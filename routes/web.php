@@ -14,9 +14,13 @@ use App\Http\Controllers\FollowController;
 use App\Http\Controllers\SearchController;
 //pdf化機能
 use App\Http\Controllers\PdfController;
+
 //予約情報をまとめる機能
 use App\Http\Controllers\ReservationController;
-
+//予約情報をまとめる機能
+use App\Http\Controllers\ReserveController;
+// dompdfの利用
+use App\Http\Controllers\DomPdfController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +36,11 @@ Route::middleware('auth')->group(function () {
 
 
 // -------------------------------------------------
+Route::get('/output/pdf', [DomPdfController::class, 'output'])->name('dompdf.output');
+
+// 予約を書く画面に移動
+Route::get('/reserve/show/{id}', [ReserveController::class, 'show'])->name('reserve.show');
+
 // pdfのフォーム画面
 Route::get('/test',  function () {
         return view('test.pdfTest');
@@ -62,9 +71,11 @@ Route::get('/tweet/mypage', [TweetController::class, 'mydata'])->name('tweet.myp
 });
 //tweet
 Route::resource('tweet', TweetController::class);
+//予約をまとめる
+Route::resource('reservation', ReserveController::class);
 
-//予約
-Route::resource('reservation', ReservationController::class);
+// //予約
+// Route::resource('reservation', ReservationController::class);
 
 Route::get('/', function () {
     return view('welcome');

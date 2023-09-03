@@ -31,6 +31,14 @@
               </x-primary-button>
             </a>
             </div>
+            <!--予約　テスト-->
+            <div class="flex items-center justify-end mt-4">
+            <a href="{{ route('reserve.show',['id' => $tweet->id]) }}">
+              <x-secondary-button class="ml-3">
+                {{ __('予約する') }}
+              </x-primary-button>
+            </a>
+            </div>
           </div>
         </div>
       </div>

@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use App\Models\Tweet;
 
 
-class ReservationController extends Controller
+class ReserveController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,11 +36,11 @@ class ReservationController extends Controller
     /**
      * Display the specified resource.
      */
+     // 予約編集画面でデータを取得
     public function show(string $id)
     {
-        //
-        
-        
+        $tweet = Tweet::find($id);
+        return view('reserve.show', compact('tweet'));
     }
 
     /**
